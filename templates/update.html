@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<div class="card">
+  <div class="card-header">
+    Update Task
+  </div>
+  <div class="card-body">
+
+<form action="{% url 'updated_data' %}" method="POST">{% csrf_token %}
+
+    <div class="row">
+
+      <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+        <h5 class="card-title">Task name</h5>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="update_task_name" value="{{tasks_row.task_name}}"><br>
+        <input type="hidden" name="tasks_row_id" value="{{tasks_row.id}}">
+        <a href="{% url 'index' %}" class="btn btn-info"><- Go back</a>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <h5 class="card-title">Completed</h5>
+            <div class="form-check form-switch ">
+                {{ fo_edit_order_detail.completed }}
+            </div>
+      </div>
+
+
+    </div>
+
+</form>
+  </div>
+</div>
+
+{% endblock %}

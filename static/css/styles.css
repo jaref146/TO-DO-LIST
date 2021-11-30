@@ -1,0 +1,35 @@
+body {
+    background-color: #fefefe;
+    justify-content: center;
+}
+
+.container{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.not-completed{
+    border: silver solid 1px;
+    border-radius: 0.25rem;
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+.completed{
+    border: silver solid 1px;
+    border-radius: 0.25rem;
+    background-color: #eeeeee;
+    margin: 10px;
+    padding: 10px;
+    text-decoration: line-through;
+}
+
+#delete_part{
+    color: #fe6993;
+    background-color: rgba(254, 105, 147, 0.1);
+    border-radius: 3px;
+    padding: 0.2em;
+    line-height: 2em;
+}
+

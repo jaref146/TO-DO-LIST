@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<form action="{% url 'add' %}" method="POST">{% csrf_token %}
+<div class="input-group mb-3">
+  <input name="taking_task_name" type="text" class="form-control" placeholder="Add tasks" aria-label="Recipient's username" aria-describedby="button-addon2">
+<!--  <button class="btn btn-outline-secondary bg-primary text-white" type="button" id="button-addon2">ADD</button>-->
+  <button class="btn btn-primary" type="submit">ADD</button>
+</div>
+</form>
+
+{% for task in tasks %}
+  {% if task.completed %}
+  <div class="row completed">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="color: gray;">
+      <b>{{task.task_name}}</b>
+      <br>
+      <p style="font-size: 0.7rem;">Created at: {{task.created_at}}</p>
+      {% if task.update_date_at %}
+      <p style="font-size: 0.7rem;">Edited at: {{task.update_date_at}}</p>
+       {% endif %}
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-md-end text-lg-end text-xl-end">
+      <a class="btn btn-primary" href="{% url 'update' task.id %}">Update</a>
+      <a class="btn btn-danger " href="{% url 'delete' task.id %}">Delete</a>
+    </div>
+  </div>
+  {% else %}
+
+  <div class="row not-completed">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <b>{{task.task_name}}</b>
+      <br>
+      <p style="font-size: 0.7rem; color: gray;">Created at: {{task.created_at}}</p>
+      {% if task.update_date_at %}
+      <p style="font-size: 0.7rem;">Edited at: {{task.update_date_at}}</p>
+       {% endif %}
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6  text-md-end text-lg-end text-xl-end">
+      <div>
+        <a class="btn btn-success" href="{% url 'completed' task.id %}">Completed</a>
+        <a class="btn btn-primary" href="{% url 'update' task.id %}">Update</a>
+        <a class="btn btn-danger " href="{% url 'delete' task.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
+{% endfor %}
+
+{% endblock %}
